@@ -19,7 +19,7 @@ Lotes vencidos são destacados. Linhas inválidas são registradas no CloudWatch
 
 ## Aprendizado: UTC × São Paulo
 
-No teste original, a data UTC da Lambda já havia avançado para o dia seguinte enquanto ainda era noite no Brasil. Isso deslocou a janela de vendas e os dias até o vencimento. Naquele conjunto sintético, a estimativa mudou de **R$ 2.603,56** para **R$ 1.819,97**, diferença de **R$ 783,59** (cerca de R$ 800). Esse valor foi observado naquele cenário específico. A correção usa `zoneinfo.ZoneInfo("America/Sao_Paulo")` para definir a data de negócio.
+No teste original, a data UTC da Lambda já havia avançado para o dia seguinte enquanto ainda era noite no Brasil. Isso deslocou a janela de vendas e os dias até o vencimento. Naquele teste, com outra versão dos dados sintéticos, um único dia de diferença mudou a perda prevista em R$ 783,59 (quase R$ 800). A correção usa zoneinfo.ZoneInfo("America/Sao_Paulo") para definir a data de negócio.
 
 ## Testes e dados de demonstração
 
