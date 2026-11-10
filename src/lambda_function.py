@@ -218,7 +218,10 @@ def processar_alerta_validade(hoje: date = None) -> dict:
             "acao_sugerida": acao,
         })
 
-    lotes_vencidos.sort(key=lambda x: (x["data_validade"], x["lote_id"]))
+    # Ordena pela data real; "data_validade" é texto dd/mm/aaaa e não ordena cronologicamente.
+    lotes_vencidos.sort(
+        key=lambda x: (datetime.strptime(x["data_validade"], "%d/%m/%Y").date(), x["lote_id"])
+    )
     lotes_ordenados = sorted(
         lotes_analisados,
         key=lambda x: (x["perda_estimada"], x["valor_em_risco"]),

@@ -85,6 +85,33 @@ def test_demanda_prevista_e_distribuida_uma_vez_entre_lotes_fefo():
     assert report["total_perda_estimada"] == 500
 
 
+def test_lotes_vencidos_ordenados_pela_data_real_e_nao_pelo_texto():
+    today = date(2026, 11, 9)
+    products = [{"id": "1", "nome": "Produto fictício", "categoria": "teste",
+                 "preco_custo": "1.00", "preco_venda": "2.00"}]
+    # Como texto dd/mm/aaaa: "02/11/2026" < "15/10/2026" < "20/12/2025" (ordem errada).
+    lots = [
+        {"id": "10", "produto_id": "1", "quantidade": "1", "data_entrada": "2025-12-01",
+         "data_validade": "2026-11-02"},
+        {"id": "11", "produto_id": "1", "quantidade": "1", "data_entrada": "2025-12-01",
+         "data_validade": "2026-10-15"},
+        {"id": "12", "produto_id": "1", "quantidade": "1", "data_entrada": "2025-12-01",
+         "data_validade": "2025-12-20"},
+    ]
+
+    def fake_read(_bucket, key):
+        return {"dados/produtos.csv": products, "dados/lotes_estoque.csv": lots,
+                "dados/vendas.csv": []}[key]
+
+    with patch.object(app, "ler_csv_s3", side_effect=fake_read):
+        report = app.processar_alerta_validade(today)
+
+    assert [v["lote_id"] for v in report["lotes_vencidos"]] == [12, 11, 10]
+    assert [v["data_validade"] for v in report["lotes_vencidos"]] == [
+        "20/12/2025", "15/10/2026", "02/11/2026",
+    ]
+
+
 def test_formatacao_brasileira():
     assert app.formatar_moeda_br(1234.56) == "R$ 1.234,56"
 
