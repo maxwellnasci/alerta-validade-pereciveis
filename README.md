@@ -7,7 +7,7 @@ Este projeto demonstra um alerta diário que estima a sobra dos lotes usando ven
 
 **Tecnologias:** Python, Lambda, S3, SES, EventBridge, CloudWatch, SNS.
 
-**Resultado:** no teste FEFO com dois lotes fictícios de 50 unidades, custo de R$ 10/un e previsão de 50 vendas, o sistema alocou as vendas uma única vez e estimou **R$ 500,00** de perda no segundo lote.
+**Resultado:** no exemplo do print acima, gerado com os CSVs fictícios de `data/` em 09/11/2026, o alerta identificou **9 lotes** na janela de risco (0 a 15 dias), estimou **R$ 2.603,56** de perda prevista e destacou **1 lote já vencido**.
 
 ## Como funciona
 
