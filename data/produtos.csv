@@ -1,0 +1,16 @@
+id,nome,categoria,preco_custo,preco_venda
+1,Picanha bovina resfriada kg,carnes,58.5,89.9
+2,Filé de peito de frango 1 kg,carnes,14.2,22.9
+3,Carne moída patinho kg,carnes,29.8,42.5
+4,Leite integral 1 L,laticínios,3.8,5.49
+5,Iogurte natural 400 g,laticínios,7.1,11.9
+6,Requeijão tradicional 200 g,laticínios,5.9,9.8
+7,Alface americana un,hortifrúti,2.2,4.5
+8,Tomate italiano kg,hortifrúti,4.5,8.9
+9,Morango bandeja 250 g,hortifrúti,6.0,10.5
+10,Queijo muçarela 200 g,frios,7.9,12.9
+11,Presunto cozido 200 g,frios,6.4,10.9
+12,Salame fatiado 100 g,frios,8.5,14.9
+13,Pão de queijo congelado 1 kg,padaria,13.5,22.9
+14,Bolo de cenoura 400 g,padaria,8.0,15.9
+15,Pão de forma 500 g,padaria,5.2,9.5
